@@ -7,7 +7,7 @@ class PlayerController {
   async create(request: Request, response: Response) {
     const { name, email, age } = request.body;
 
-    if (!name || !email)
+    if (!name || !email || !age)
       return response.status(400).json({
         error: "Incorrect params or does not exists!",
       });

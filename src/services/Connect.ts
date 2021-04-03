@@ -1,23 +1,21 @@
 import mongoose from "mongoose";
 
-type TInput = {
-  connectionString: string;
-};
-
-export default ({ connectionString }: TInput) => {
-  const Connect = () => {
+class Connection {
+  async Connect() {
     mongoose
-      .connect(connectionString, { useNewUrlParser: true })
-      .then(() => {
-        return console.info(`Successfully connected to ${connectionString}`);
+      .connect(process.env.CONNECTION_MONGO, {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
       })
-      .catch((error) => {
-        console.error("Error connecting to database: ", error);
-        return process.exit(1);
+      .then((response) => {
+        console.info("Connections is sucessfull");
       });
-  };
+  }
+  async Close() {
+    mongoose.connection.on("disconnected", this.Connect);
+  }
+}
 
-  Connect();
-
-  mongoose.connection.on("disconnected", Connect);
-};
+export default Connection;

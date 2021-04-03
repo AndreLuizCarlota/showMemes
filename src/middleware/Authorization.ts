@@ -21,9 +21,7 @@ class Authorization {
       });
 
     try {
-      // const decoded = verify(token.slice(7), process.env.SECRET_KEY);
-      const decoded = verify(token.slice(7), "TWyDS@%v");
-
+      const decoded = verify(token.slice(7), process.env.SECRET_KEY);
       if (!decoded)
         return response.status(401).json({
           error: "Invalid token or expired!",

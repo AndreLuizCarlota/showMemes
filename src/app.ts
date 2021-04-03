@@ -1,14 +1,19 @@
 import "reflect-metadata";
 import express from "express";
+import { config } from "dotenv";
 import { router } from "./routes";
-import Connect from "./services/Connect";
+import Connection from "./services/Connect";
 
+config();
+
+const connection = new Connection();
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
 app.use(router);
-Connect({ connectionString: "mongodb://localhost:27017/showMemes" });
+
+connection.Connect();
 
 app.listen(3333, () => {
-  console.log("App Start Port 3333 🚀", process.env.SECRET_KEY);
+  console.log("App Start Port 3333 🚀");
 });

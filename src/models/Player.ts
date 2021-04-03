@@ -18,12 +18,18 @@ const PlayerSchema: Schema = new Schema({
     type: [Object],
     require: true,
   },
+  score: {
+    default: 0,
+    type: Number,
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
 export interface IPlayer extends Document {
   helpers: Array<IHelper>;
+  score: Number;
   email: String;
   name: String;
   age: Number;
