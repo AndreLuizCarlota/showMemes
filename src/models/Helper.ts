@@ -14,8 +14,8 @@ const HelperSchema: Schema = new Schema({
 });
 
 export interface IHelper extends Document {
+  amount: Number;
   name: String;
-  amount: Array<String>;
 }
 
 export default mongoose.model<IHelper>("Helper", HelperSchema);

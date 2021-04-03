@@ -28,10 +28,11 @@ class Authorization {
         });
 
       const { id } = decoded as TokenPayload;
-
-      request.user = {
+      request.player = {
         id,
       };
+
+      console.log("Player", request.player);
 
       next(null);
     } catch (error) {
