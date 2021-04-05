@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc --build",
     "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/app.ts"
   },
   "dependencies": {
